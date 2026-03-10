@@ -16,13 +16,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 의존성 설치
-        run: pip install -r requirements.txt
-
-      - name: 모니터링 실행
+      - name: 의존성 설치 및 실행
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           X_SCRAPE_USERNAME: ${{ secrets.X_SCRAPE_USERNAME }}
           X_SCRAPE_PASSWORD: ${{ secrets.X_SCRAPE_PASSWORD }}
-        run: python monitor.py
+        run: |
+          pip install requests twscrape
+          python monitor.py
